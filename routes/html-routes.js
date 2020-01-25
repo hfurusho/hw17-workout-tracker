@@ -19,10 +19,10 @@ router.get("/exercise", function(req, res) {
   });
 });
 
-router.get("/exercise?", function(req, res) {
-  res.sendFile(path.join(__dirname, "../public/exercise.html"), function(err) {
-    if (err) throw err;
-  });
-});
+// router.get("/exercise?", function(req, res) {
+//   res.sendFile(path.join(__dirname, "../public/exercise.html"), function(err) {
+//     if (err) throw err;
+//   });
+// });
 
 module.exports = router;
