@@ -12,7 +12,7 @@ const distanceInput = document.querySelector("#distance");
 const completeButton = document.querySelector("button.complete");
 const addButton = document.querySelector("button.add-another");
 const toast = document.querySelector("#toast");
-const newWorkout = document.querySelector(".new-workout")
+const newWorkout = document.querySelector(".new-workout");
 
 let workoutType = null;
 let shouldNavigateAway = false;
@@ -22,11 +22,10 @@ init();
 async function init() {
   if (location.search.split("=")[1] === undefined) {
     const workout = await API.getLastWorkout();
-    if(workout) {
+    if (workout) {
       location.search = "?id=" + workout._id;
-    }
-    else {
-      newWorkout.classList.add("")
+    } else {
+      newWorkout.classList.add("");
     }
   }
 }
@@ -136,16 +135,16 @@ function clearInputs() {
   weightInput.value = "";
 }
 
-if(workoutTypeSelect) {
+if (workoutTypeSelect) {
   workoutTypeSelect.addEventListener("change", handleWorkoutTypeChange);
 }
-if(completeButton) {
+if (completeButton) {
   completeButton.addEventListener("click", function(event) {
     shouldNavigateAway = true;
     handleFormSubmit(event);
   });
 }
-if(addButton) {
+if (addButton) {
   addButton.addEventListener("click", handleFormSubmit);
 }
 toast.addEventListener("animationend", handleToastAnimationEnd);
