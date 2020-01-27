@@ -20,7 +20,10 @@ let shouldNavigateAway = false;
 init();
 
 async function init() {
-  if (location.search.split("=")[1] === undefined) {
+  if (
+    location.search.split("=")[1] === undefined &&
+    location.pathname !== "/exercise"
+  ) {
     const workout = await API.getLastWorkout();
     if (workout) {
       location.search = "?id=" + workout._id;
@@ -112,7 +115,10 @@ async function handleFormSubmit(event) {
     workoutData.duration = Number(resistanceDurationInput.value.trim());
   }
 
-  await API.addExercise(workoutData);
+  let addedExercise = await API.addExercise(workoutData);
+  if (!shouldNavigateAway) {
+    location.search = `?id=${addedExercise._id}`;
+  }
   clearInputs();
   toast.classList.add("success");
 }
