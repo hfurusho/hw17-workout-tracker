@@ -1,19 +1,19 @@
 async function init() {
   const lastWorkout = await API.getLastWorkout();
-  console.log(lastWorkout);
+  if (lastwork) {
+    document
+      .querySelector("a[href='/exercise?']")
+      .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
 
-  document
-    .querySelector("a[href='/exercise?']")
-    .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
+    const workoutSummary = {
+      date: formatDate(lastWorkout.day),
+      totalDuration: lastWorkout.totalDuration,
+      numExercises: lastWorkout.exercises.length,
+      ...tallyExercises(lastWorkout.exercises)
+    };
 
-  const workoutSummary = {
-    date: formatDate(lastWorkout.day),
-    totalDuration: lastWorkout.totalDuration,
-    numExercises: lastWorkout.exercises.length,
-    ...tallyExercises(lastWorkout.exercises)
-  };
-
-  renderWorkoutSummary(workoutSummary);
+    renderWorkoutSummary(workoutSummary);
+  }
 }
 
 function tallyExercises(exercises) {
