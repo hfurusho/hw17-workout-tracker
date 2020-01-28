@@ -1,6 +1,6 @@
 async function init() {
   const lastWorkout = await API.getLastWorkout();
-  if (lastwork) {
+  if (lastworkout) {
     document
       .querySelector("a[href='/exercise?']")
       .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
